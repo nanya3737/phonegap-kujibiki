@@ -26,34 +26,33 @@
             }
             
             function capturePhoto(){
-                alert("ボタンクリック");
                 console.log("capturePhoto() : start");
                 //カメラオプション
-                var option = {
+                var options = {
                     quality: 50,
                     destinationType: Camera.DestinationType.DATA_URL,
                     allowEdit: true,
-                    targetWidth: 300,
-                    targetHeight: 320,
+                    targetwidth: 300,
+                    targetheight: 320,
                     saveToPhotoAlbum: true
                 }
-                alert("1");
                 console.log("capturePhoto() : 1");
                 navigator.camera.getPicture(setPhotoData, failCapture, options);
-                alert("2");
-                console.log("capturePhoto()");
+                console.log("capturePhoto() : end");
+                setPhotoData("aaa");
             }
             
             function setPhotoData(imageData){
                 alert('撮影した写真をカメラロールに保存しました．');
                 var resultImage = document.getElementById('resultImage');
+                //                resultImage.src = "img/logo.png";
                 resultImage.src = 'data:image/png;base64.' + imageData;
             }
             
             function failCapture(message){
                 alert('カメラ撮影に失敗しました: ' + message);
             }
-        </script>
+            </script>
         
         <style type="text/css">
             body{
