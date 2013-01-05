@@ -14,13 +14,13 @@
             // PhoneGap の初期化が完了しており、deviceready イベントが発行済みとなってしまっていた場合に対応。
             // http://gihyo.jp/dev/serial/01/phonegap2/0003
             
-            document.addEventListener("deviceready", onDeviceReady, false);
+//            document.addEventListener("deviceready", onDeviceReady, false);
             
-//            if(typeof device === 'undefined'){
-//		        document.addEventListener("deviceready", onDeviceReady, false);
-//		    }else{
-//		        onDeviceReady();
-//		    }
+            if(typeof device === 'undefined'){
+		        document.addEventListener("deviceready", onDeviceReady, false);
+		    }else{
+		        onDeviceReady();
+		    }
             
 		    function onDeviceReady(){
                 alert("起動準備");
@@ -31,7 +31,7 @@
             }
             
             function capturePhoto(){
-                console.log("capturePhoto() : start");
+                alert("capturePhoto() : start");
                 //カメラオプション
                 var options = {
                     quality: 50,
@@ -41,10 +41,11 @@
                     targetheight: 320,
                     saveToPhotoAlbum: true
                 }
-                console.log("capturePhoto() : 1");
-                navigator.camera.getPicture(setPhotoData, failCapture, options);
-                console.log("capturePhoto() : end");
-                setPhotoData("aaa");
+                alert("capturePhoto() : 1");
+                navigator.camera.getPicture(setPhotoData, failCapture);
+//              navigator.camera.getPicture(setPhotoData, failCapture, options);
+                alert("capturePhoto() : end");
+//                setPhotoData("aaa");
             }
             
             function setPhotoData(imageData){
@@ -64,15 +65,22 @@
                 margin: 0;
                 text-align: center;
             }
+            
             h1{
                 margin: 0;
                 background-color: #889bb3;
                 color: #ffffff
                 font-size: 18pt;
             }
+            
             p{
                 text-align: center
             }
+            
+            button{
+                font-size: 18pt;
+            }
+            
             #resultImage{
                 width: 300px;
                 height: 320px;
