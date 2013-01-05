@@ -26,18 +26,21 @@
             }
             
             function capturePhoto(){
+                alert("ボタンクリック");
                 console.log("capturePhoto() : start");
                 //カメラオプション
                 var option = {
                     quality: 50,
                     destinationType: Camera.DestinationType.DATA_URL,
                     allowEdit: true,
-                    targetwidth: 300,
-                    targetheight: 320,
+                    targetWidth: 300,
+                    targetHeight: 320,
                     saveToPhotoAlbum: true
                 }
+                alert("1");
                 console.log("capturePhoto() : 1");
                 navigator.camera.getPicture(setPhotoData, failCapture, options);
+                alert("2");
                 console.log("capturePhoto()");
             }
             
