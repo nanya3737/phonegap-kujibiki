@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Camera Example</title>
+        
+        <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+        <script type="text/javascript">
+            
+            // PhoneGap の初期化が完了しており、deviceready イベントが発行済みとなってしまっていた場合に対応。
+            // http://gihyo.jp/dev/serial/01/phonegap2/0003
+            if(typeof device === 'undefined'){
+		        document.addEventListener("deviceready", onDeviceReady, false);
+		    }else{
+		        onDeviceReady();
+		    }
+            
+		    function onDeviceReady(){
+                console.log("起動準備");
+                document.getElementById('capturePhoto').addEventListener('click', capturePhoto, false);
+                console.log("起動完了");
+            }
+            
+            function capturePhoto(){
+                console.log("capturePhoto() : start");
+                //カメラオプション
+                var option = {
+                    quality: 50,
+                    destinationType: Camera.DestinationType.DATA_URL,
+                    allowEdit: true,
+                    targetwidth: 300,
+                    targetheight: 320,
+                    saveToPhotoAlbum: true
+                }
+                console.log("capturePhoto() : 1");
+                navigator.camera.getPicture(setPhotoData, failCapture, options);
+                console.log("capturePhoto()");
+            }
+            
+            function setPhotoData(imageData){
+                alert('撮影した写真をカメラロールに保存しました．');
+                var resultImage = document.getElementById('resultImage');
+                resultImage.src = 'data:image/png;base64.' + imageData;
+            }
+            
+            function failCapture(message){
+                alert('カメラ撮影に失敗しました: ' + message);
+            }
+        </script>
+        
+        <style type="text/css">
+            body{
+                margin: 0;
+                text-align: center;
+            }
+            h1{
+                margin: 0;
+                background-color: #889bb3;
+                color: #ffffff
+                font-size: 18pt;
+            }
+            p{
+                text-align: center
+            }
+            #resultImage{
+                width: 300px;
+                height: 320px;
+            }
+            
+            </style>
+    </head>
+    <body>
+        
+        <h1>カメラ</h1>
+        <p><img id="resultImage" src="" /></P>
+        <p><button id="capturePhoto">写真を撮る</button></p>
+    </body>
+</html>
