@@ -13,16 +13,21 @@
             
             // PhoneGap の初期化が完了しており、deviceready イベントが発行済みとなってしまっていた場合に対応。
             // http://gihyo.jp/dev/serial/01/phonegap2/0003
-            if(typeof device === 'undefined'){
-		        document.addEventListener("deviceready", onDeviceReady, false);
-		    }else{
-		        onDeviceReady();
-		    }
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+//            if(typeof device === 'undefined'){
+//		        document.addEventListener("deviceready", onDeviceReady, false);
+//		    }else{
+//		        onDeviceReady();
+//		    }
             
 		    function onDeviceReady(){
+                alert("起動準備");
                 console.log("起動準備");
                 document.getElementById('capturePhoto').addEventListener('click', capturePhoto, false);
                 console.log("起動完了");
+                alert("起動完了");
             }
             
             function capturePhoto(){
